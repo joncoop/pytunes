@@ -1,8 +1,15 @@
 # Pytunes music player
 
-import tkinter
-import json
 
+# imports
+import json
+import pygame
+import tkinter
+
+# initialize mixer
+pygame.mixer.init()
+
+# global config
 file = 'music.json'
 
 def load():
@@ -12,8 +19,15 @@ def load():
     return json.loads(txt)
 
 
-def play(song_number):
-    pass
+def play(song):
+    path = song['path']
+    pygame.mixer.music.load(path)
+    pygame.mixer.music.play()
+    
+def pause():
+    pygame.mixer.music.stop()
 
+    
+# main
 if __name__ == '__main__':
     library = load()
